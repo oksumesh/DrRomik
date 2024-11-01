@@ -1,0 +1,78 @@
+.container {
+    max-width: 1200px;
+  }
+  
+  .image-placeholder {
+    background: #f1f3f5;
+    border-radius: 50%;
+  }
+  
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="password"] {
+    font-size: 16px;
+  }
+  
+  form .btn-primary {
+    background: linear-gradient(to right, #0062e6, #33aeff);
+  }
+  
+  .btn-outline-secondary {
+    border-color: #ccc;
+    color: #333;
+  }
+  
+  /* .btn-outline-secondary img {
+    width: 18px;
+  } */
+  
+  form .form-check-label a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  form .form-check-label a:hover {
+    text-decoration: underline;
+  }
+  
+  .dots-indicator {
+    gap: 0.3rem;
+    margin: 0 1rem;
+  }
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #d1d5db; /* Light gray color */
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot.active {
+    background-color: #339af0; /* Blue color for active dot */
+  }
+
+  .btn.rounded-circle {
+    width: 30px; /* Set width and height to be the same */
+    height: 30px;
+    border-radius: 50%; /* Make it a perfect circle */
+    padding: 0; /* Remove any padding inside the button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e0e0; /* Optional: lighter background color */
+  }
+  
+  .btn.rounded-circle:hover {
+    background-color: #d1d5db; /* Slightly darker on hover */
+  }
+  
+  .btn-outline-secondary {
+    white-space: nowrap; /* Prevent text from wrapping */
+  }
+  
+  .btn-outline-secondary i {
+    font-size: 15px; /* Adjust icon size as needed */
+    margin-right: 8px; /* Space between icon and text */
+  }
+  
