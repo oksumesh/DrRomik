@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,17 +16,33 @@ export class SignupComponent {
     termsAccepted: false
   };
 
-  constructor(private router: Router) {}
+  signupForm: FormGroup;
+
+
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.signupForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
+      termsAccepted: [false, Validators.requiredTrue]
+    }, { validator: this.passwordsMatchValidator });
+  }
+
+  passwordsMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
+  }
 
   onRegister() {
-    console.log(this.userData);
-    
-    this.router.navigateByUrl('/signup/onboard', { state: { userData: this.userData } });
-    if (this.userData.password === this.userData.confirmPassword && this.userData.termsAccepted) {
-      // Navigate to onboard with user data as state
-      this.router.navigateByUrl('/signup/onboard', { state: { userData: this.userData } });
+    if (this.signupForm.valid) {
+      const userData = this.signupForm.value;
+      delete userData.confirmPassword;
+      console.log(userData);
+      this.router.navigateByUrl('/signup/onboard', { state: { userData } });
     } else {
-      alert("Passwords don't match or terms not accepted!");
+      alert("Please fill out all fields correctly.");
     }
   }
 

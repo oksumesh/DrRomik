@@ -28,6 +28,8 @@ export class UserOnboardingComponent {
     location: ''
   };
   showSuccessPopup: boolean = false;
+  isOptionSelected: boolean = false;
+  selectedOption: string = '';
 
 
   selectedOptions: { [key: number]: string } = {};
@@ -113,6 +115,7 @@ export class UserOnboardingComponent {
   nextStep(): void {
     if (this.currentStepIndex < this.steps.length - 1) {
       this.currentStepIndex++;
+      this.isOptionSelected = false;
       if (this.currentStep.isLocationStep) {
         this.isMapLoading = true; // Show loader
         setTimeout(() => this.initializeMap(), 1000);
@@ -123,6 +126,7 @@ export class UserOnboardingComponent {
   previousStep(): void {
     if (this.currentStepIndex > 0) {
       this.currentStepIndex--;
+      this.isOptionSelected = false;
       if (this.currentStep.isLocationStep) {
         setTimeout(() => this.initializeMap(), 0);
       }
@@ -137,6 +141,8 @@ export class UserOnboardingComponent {
     } else if (this.currentStepIndex === 2) {
       this.onboardData.association = option;
     }
+    this.selectedOption = option;
+    this.isOptionSelected = true;
     console.log('Current onboard data:', this.onboardData);
   }
 

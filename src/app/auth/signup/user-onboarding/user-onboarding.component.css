@@ -80,7 +80,13 @@
   /* Light color for inactive lines */
   margin: 0 8px;
   transition: background-color 0.3s;
+  width: 50px;
 }
+
+.line.completed-line {
+  background-color: #343a40;
+}
+
 
 .step.completed {
   background-color: white;
@@ -149,3 +155,20 @@
   padding: 10px 40px;
   border-radius: 20px;
 }
+
+.action-button{
+  background-color: #2D3648;
+}
+
+.disabled-button {
+  background-color: #d1d5db !important;
+  color: #999 !important;
+  cursor: not-allowed;
+}
+
+.selected-option {
+  background-color: #2D3648 !important; /* Change to your preferred highlight color */
+  color: #fff !important;               /* Change to the text color you want for selected option */
+  border-color: #2D3648 !important;     /* Make the border match the background */
+}
+

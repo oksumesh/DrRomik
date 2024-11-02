@@ -27,7 +27,7 @@
           </div>
     
           <!-- Line between steps, hidden after the last step -->
-          <div *ngIf="i < steps.length - 1" class="line"></div>
+          <div *ngIf="i < steps.length - 1" class="line" [ngClass]="{'completed-line': i < currentStepIndex - 1}"></div>
         </div>
       </div>
     </div>
@@ -70,25 +70,34 @@
       <!-- Dynamic Options -->
       <div *ngIf="!currentStep.isLocationStep" class="d-flex flex-wrap justify-content-center">
         <button 
-          *ngFor="let option of currentStep.options" 
-          class="btn btn-outline-secondary m-2"
-          (click)="selectOption(option)">
-          {{ option }}
-        </button>
+        *ngFor="let option of currentStep.options" 
+        class="btn btn-outline-secondary m-2"
+        (click)="selectOption(option)"
+        [ngClass]="{'selected-option': selectedOption === option}">
+        {{ option }}
+      </button>
+      
       </div>
     </div>
   
     <!-- Navigation Buttons -->
     <div class="d-flex justify-content-between mt-3">
-      <button *ngIf="currentStepIndex > 0" class="btn btn-secondary" (click)="previousStep()" style="border-radius: 37px;">
+      <button *ngIf="currentStepIndex > 0" class="btn btn-secondary action-button" (click)="previousStep()" style="border-radius: 37px;">
         Previous Step
       </button>
-      <button *ngIf="currentStepIndex === steps.length - 1" class="btn btn-primary ms-auto" (click)="submitForm()" style="border-radius: 37px;padding: 10px 40px;">
+      <button *ngIf="currentStepIndex === steps.length - 1" class="btn btn-primary ms-auto action-button" (click)="submitForm()" style="border-radius: 37px;padding: 10px 40px;">
         Submit
       </button>
-      <button *ngIf="currentStepIndex < steps.length - 1" class="btn btn-secondary ms-auto" (click)="nextStep()" style="border-radius: 37px;">
+      <button 
+        *ngIf="currentStepIndex < steps.length - 1" 
+        class="btn btn-secondary ms-auto action-button" 
+        (click)="nextStep()" 
+        [disabled]="!isOptionSelected"
+        [ngClass]="{'disabled-button': !isOptionSelected}"
+        style="border-radius: 37px;">
         Next Step
       </button>
+
     </div>
     
   </div>
