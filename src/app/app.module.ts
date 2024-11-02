@@ -11,6 +11,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterSuccessComponent } from './auth/signup/register-success/register-success.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { RegisterSuccessComponent } from './auth/signup/register-success/registe
     ReactiveFormsModule,
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent]
 })

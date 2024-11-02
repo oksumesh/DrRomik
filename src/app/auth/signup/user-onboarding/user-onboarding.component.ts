@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
+import { UserService } from '../../../services/user.service';
 
 
 interface Step {
@@ -34,7 +35,7 @@ export class UserOnboardingComponent {
 
   selectedOptions: { [key: number]: string } = {};
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService:UserService) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { userData: any };
     this.userData = state?.userData || {};
@@ -106,7 +107,11 @@ export class UserOnboardingComponent {
           const latLng = new L.LatLng(lat, lon);
           this.map.setView(latLng, 13); // Zoom in to level 13
           this.marker.setLatLng(latLng); // Move marker to new location
-          this.onboardData.location = `${lat},${lon}`;
+          if(location){
+            this.onboardData.location = location;
+          } else if(pincode){
+            this.onboardData.location = pincode;
+          }
         }
       })
       .catch(error => console.error("Error fetching location:", error));
@@ -151,10 +156,25 @@ export class UserOnboardingComponent {
   }
 
   submitForm(){
-    this.showSuccessPopup = true;
-    console.log(this.userData);
-    console.log(this.onboardData);
     
-    
+    const combinedData = {
+      ...this.userData,
+      ...this.onboardData
+  };
+
+  console.log(combinedData); // Log the combined data
+  const { password, confirmPassword, ...loggedData } = combinedData;
+  console.log(loggedData); 
+
+  // Now send combinedData to the API
+  this.userService.createUser(combinedData).subscribe({
+    next: (response) => {
+      console.log('User registered successfully:', response);
+      this.showSuccessPopup = true;
+    },
+    error: (error) => {
+      console.error('Error registering user:', error);
+    }
+  });
   }
 }
