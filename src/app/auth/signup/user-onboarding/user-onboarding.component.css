@@ -1,0 +1,151 @@
+.centered-content {
+  max-width: 600px;
+  /* Set desired width for both stepper and question container */
+  margin: 0 auto;
+  /* Center the content */
+}
+
+/* Stepper Styling */
+.step-indicator {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.step {
+  width: 55px;
+  height: 55px;
+  border-radius: 8px;
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #333;
+  transition: background-color 0.3s, border-color 0.3s;
+  position: relative;
+  font-weight: bold;
+}
+
+.active-step {
+  background-color: #2D3648; /* Dark background */
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 22px 10px 15px; /* Adjust padding to center icon and text */
+  min-width: 237px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 12px;
+}
+
+.step.active-step {
+  background-color: #2D3648;
+  /* Dark background for the active step */
+  color: #fff;
+  border: 2px solid #343a40;
+  border-radius: 8px;
+  padding: 5px 15px;
+  font-size: 14px;
+  height: 55px;
+}
+
+.step-title{
+  height: 22px;
+  width: 156px;
+}
+
+.active-step .step-title {
+  font-weight: bold;
+  font-size: 16px; /* Main title size */
+}
+
+.step-subtitle{
+  height: 20px;
+  width: 70px;
+}
+
+.active-step .step-subtitle {
+  font-size: 12px; /* Smaller, lighter text for "STEP X/Y" */
+  color: #b0b3b8; /* Lighter color for subtitle */
+  margin-bottom: 4px; /* Add space between subtitle and title */
+}
+
+.line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #d1d5db;
+  /* Light color for inactive lines */
+  margin: 0 8px;
+  transition: background-color 0.3s;
+}
+
+.step.completed {
+  background-color: white;
+  /* Background for completed steps */
+  border-color: #343a40;
+  /* Dark border for completed steps */
+}
+
+.step.completed .line {
+  background-color: #343a40;
+}
+
+.completed .step {
+  background-color: #343a40;
+  /* Completed step style */
+  border-color: #343a40;
+  color: #fff;
+}
+
+.step.completed+.line {
+  background-color: #343a40;
+  /* Dark color for completed line */
+}
+
+.icon-check, .icon-clock {
+  font-size: 18px; /* Adjust size as needed */
+}
+
+.step.completed .icon-check {
+  color: #343a40; /* Dark color for completed check icon */
+}
+
+.step:not(.completed):not(.active-step) .icon-clock {
+  color: #d1d5db; /* Light color for pending clock icon */
+}
+
+
+/* Stepper Designing End */
+.card {
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.card h5 {
+  font-weight: bold;
+}
+
+.card .text-muted {
+  font-size: 14px;
+  margin-top: -8px;
+}
+
+.btn-outline-secondary {
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 8px 16px;
+  color: #333;
+}
+
+.btn-outline-secondary.active {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.btn-secondary {
+  padding: 10px 40px;
+  border-radius: 20px;
+}

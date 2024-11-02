@@ -19,27 +19,28 @@
           
   
         <!-- Form Fields -->
-        <form class="w-100">
-          <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Enter Your Name" />
-          </div>
-          <div class="mb-3">
-            <input type="email" class="form-control" placeholder="Enter Email ID" />
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Create Password" />
-          </div>
-          <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Confirm Password" />
-          </div>
-          <div class="form-check mb-4">
-            <input class="form-check-input" type="checkbox" id="termsCheckbox" />
-            <label class="form-check-label" for="termsCheckbox">
-              I agree with <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Register</button>
-        </form>
+        <form class="w-100" (submit)="onRegister()">
+            <div class="mb-3">
+              <input type="text" class="form-control" [(ngModel)]="userData.name" name="name" placeholder="Enter Your Name" required />
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" [(ngModel)]="userData.email" name="email" placeholder="Enter Email ID" required />
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" [(ngModel)]="userData.password" name="password" placeholder="Create Password" required />
+            </div>
+            <div class="mb-3">
+              <input type="password" class="form-control" [(ngModel)]="userData.confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+            </div>
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="userData.termsAccepted" name="termsAccepted" id="termsCheckbox" required />
+              <label class="form-check-label" for="termsCheckbox">
+                I agree with <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+          
   
         <!-- Login Link -->
         <p class="mt-4">Already have an account? <a href="#">Login</a></p>
