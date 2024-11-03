@@ -31,6 +31,7 @@ export class UserOnboardingComponent {
   showSuccessPopup: boolean = false;
   isOptionSelected: boolean = false;
   selectedOption: string = '';
+  isLoading = false;
 
 
   selectedOptions: { [key: number]: string } = {};
@@ -156,7 +157,7 @@ export class UserOnboardingComponent {
   }
 
   submitForm(){
-    
+    this.isLoading = true;
     const combinedData = {
       ...this.userData,
       ...this.onboardData
@@ -170,6 +171,7 @@ export class UserOnboardingComponent {
   this.userService.createUser(combinedData).subscribe({
     next: (response) => {
       console.log('User registered successfully:', response);
+      this.isLoading = false;
       this.showSuccessPopup = true;
     },
     error: (error) => {

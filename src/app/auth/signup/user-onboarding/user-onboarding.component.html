@@ -58,7 +58,7 @@
         <div style="position: relative;">
           <!-- Loader Component, centered over the map -->
           <div *ngIf="isMapLoading" class="loader-overlay">
-            <app-loader></app-loader>
+            <app-loader [isMap]="true"></app-loader>
           </div>
           
           <!-- Map Container -->
@@ -104,3 +104,7 @@
   </div>
 
   <app-register-success [isVisible]="showSuccessPopup" (close)="closeSuccessPopup()"></app-register-success>
+    <!-- Loader Component, centered over the map -->
+    <div *ngIf="isLoading" class="loader-overlay">
+      <app-loader></app-loader>
+    </div>
